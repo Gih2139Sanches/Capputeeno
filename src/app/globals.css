@@ -1,8 +1,10 @@
 :root {
+  --white: #fff;
   --border-radius: 12px;
   --logo-color: #5D5D6D;
   --bg-secondary: #F3F5F6;
   --text-dark: #737380;
+  --delete-color: #DE3838
 }
 
 * {
