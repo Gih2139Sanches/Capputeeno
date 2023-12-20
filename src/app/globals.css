@@ -1,6 +1,6 @@
 :root {
-  --white: #fff;
   --border-radius: 12px;
+  --white: #fff;
   --logo-color: #5D5D6D;
   --bg-secondary: #F3F5F6;
   --bg-primary: #F0F0F5;
@@ -10,6 +10,7 @@
   --delete-color: #DE3838;
   --orange-low: #FFA585;
   --shapes: #DCE2E6;
+  --secondary-text: #617480;
 }
 
 * {
