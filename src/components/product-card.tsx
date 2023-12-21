@@ -68,7 +68,6 @@ export function ProductCard(props: ProductCardProps){
                 <Divider />
                 <p>{price}</p>
             </div>
-            
         </Card>
     )
 }

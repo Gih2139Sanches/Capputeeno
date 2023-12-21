@@ -5,17 +5,17 @@ import styled from "styled-components"
 import { DeleteIcon } from "../icons/delete-icon"
 
 interface CartItemProps {
-    product: ProductInCart,
+    product: ProductInCart
     handleUpdateQuantity(id: string, quantity: number): void
     handleDelete(id: string): void
 }
-
 
 const Item = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
     height: 210px;
+
     border-radius: 8px;
     background: var(--white);
     position: relative;
@@ -76,7 +76,7 @@ const Item = styled.li`
 
 const SelectQuantity = styled.select`
     padding: 8px;
-    border: 1.5 solid var(--border-color);
+    border: 1.5px solid var(--border-color);
     border-radius: 8px;
     background: var(--bg-secondary);
     color: var(--text-dark);
@@ -84,13 +84,15 @@ const SelectQuantity = styled.select`
     font-size: 16px;
 `
 
-export function CartItem({product, handleUpdateQuantity}: CartItemProps){
+export function CartItem({product, handleUpdateQuantity, handleDelete}: CartItemProps){
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) =>{
         handleUpdateQuantity(product.id, Number(e.target.value))
     }
     return(
         <Item>
-            <DeleteIcon onClick={() => handleDelete(product.id)} aria-label="Deletar"/>
+            <button onClick={() => handleDelete(product.id)} aria-label="Deletar">
+                <DeleteIcon />
+            </button>
             <img src={product.image_url} />
             <div>
                 <h4>{product.name}</h4>

@@ -1,5 +1,4 @@
 "use client"
-
 import { FilterContextProvider } from "@/contexts/filter-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode } from "react";
@@ -11,7 +10,7 @@ interface DeafultProvidersProps{
 
 const theme = {
     desktopBreakpoint: "968px",
-    tabletBreakpoint: "768px"
+    tabletBreakpoint: "768px",
 }
 
 export function DefaultProviders({children}: DeafultProvidersProps){

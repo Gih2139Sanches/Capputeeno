@@ -14,14 +14,12 @@ const Container = styled.div`
     flex-direction: column;
     gap: 32px;
 
-    @media(min-width: ${(props) => props.theme.desktopBreakpoint}){
+    @media(min-width: ${props => props.theme.desktopBreakpoint}){
         flex-direction: row;
     }
 `
 
 const CartListContainer = styled.div`
-    margin-top: 24px;
-
     h3{
         font-size: 24px;
         font-weight: 500;
@@ -36,9 +34,11 @@ const CartListContainer = styled.div`
         font-size: 16px;
         line-height: 150%;
         color: var(--text-dark-2);
+        margin-top: 10px;
 
         span{
             font-weight: 600;
+            margin-left: 5px;
         }
     }
 `
@@ -99,14 +99,13 @@ const ShopButton = styled.button`
 export default function CartPage(){
     const {value, updateLocalStorage} = useLocalStorage<ProductInCart[]>("cart-items", [])
 
-    const calculeTotal = (value: ProductInCart[]) => {
+    const calculeteTotal = (value: ProductInCart[]) => {
         return value.reduce((sum, item) => sum += (item.price_in_cents * item.quantity), 0)
     }
 
-    const cartTotal = formatPrice(calculeTotal(value))
+    const cartTotal = formatPrice(calculeteTotal(value))
     const deliveryFee = 4000;
-    const cartTotalWithDelivery = formatPrice(calculeTotal(value) + deliveryFee)
-
+    const cartTotalWithDelivery = formatPrice(calculeteTotal(value) + deliveryFee)
 
     const handleUpdateQuantity = (id: string, quantity: number) => {
         const newValue = value.map(item => {
@@ -126,11 +125,11 @@ export default function CartPage(){
     return (
         <DefaultPageLayout>
             <Container>
-                <BackButton navigate="/"/>
                 <CartListContainer>
+                    <BackButton navigate="/"/>
                     <h3>Seu Carrinho</h3>
                     <p>
-                        total {value.length} produtos
+                        Total ({value.length} produtos)
                         <span>{cartTotal}</span>
                     </p>
                     <CartList>
