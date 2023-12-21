@@ -22,10 +22,18 @@ const Card = styled.div`
     border-radius: 0px 0px 4px 4px;
 
     width: 256px;
+    height: 353px;
+
+    &:hover{
+        border: 2.5px solid var(--orange-low);
+        border-radius: 8px 8px 4px 4px;
+    }
 
     img{
-        width: 256px;
-        height: 300px;
+        height: 275px;
+        box-sizing: border-box;
+        width: 100%;
+        border-radius: 7px 7px 0px 0px;
     }
 
     h3{

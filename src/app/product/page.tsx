@@ -3,7 +3,7 @@ import { BackButton } from "@/components/back-button"
 import { DefaultPageLayout } from "@/components/default-page-layout"
 import { ShopBagIcon } from "@/components/icons/shopping-bag-icon"
 import { useProduct } from "@/hooks/useProduct"
-import { Product } from "@/types/products";
+import { Product } from "@/types/products"
 import { formatPrice } from "@/utils/format-price"
 import styled from "styled-components"
 
@@ -47,6 +47,10 @@ const Container = styled.div`
                 align-items: center;
                 justify-content: center;
                 gap: 8px;
+
+                &:hover{
+                    background: #0b3e5e;
+                }
             }
         }
     }
@@ -83,7 +87,7 @@ const ProductInfo = styled.div`
     p{
         font-weight: 400;
         font-size: 12px;
-        color: var(--text-dark);
+        color: var(--text-dark-2);
     }
 
     div{
@@ -98,6 +102,7 @@ const ProductInfo = styled.div`
 
         p{
             font-size: 14px;
+            width: 680px;
         }
     }
 `
@@ -118,11 +123,26 @@ export default function Product({searchParams}: {searchParams: {id: string}}){
                 cartItemsArray.push({...data, quantity: 1, id: searchParams.id})
             }
             localStorage.setItem('cart-items', JSON.stringify(cartItemsArray))
+            window.location.reload();
         }else{
             const newCart = [{...data, quantity: 1, id: searchParams.id}]
             localStorage.setItem('cart-items', JSON.stringify(newCart))
+            window.location.reload();
         }
     }
+
+    const itemCategoryType = () => {
+        const category = data?.category;
+      
+        switch (category) {
+          case 't-shirts':
+            return <span>Camiseta</span>;
+          case 'mugs':
+            return <span>Caneca</span>;
+          default:
+            return <span>{data?.category}</span>;
+        }
+      };
 
     return(
         <DefaultPageLayout>
@@ -132,7 +152,7 @@ export default function Product({searchParams}: {searchParams: {id: string}}){
                     <img src={data?.image_url} />
                     <div>
                         <ProductInfo>
-                            <span>{data?.category}</span>
+                            <span>{itemCategoryType()}</span>
                             <h2>{data?.name}</h2>
                             <span>{formatPrice(data?.price_in_cents ?? 0)}</span>
                             <p>*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</p>

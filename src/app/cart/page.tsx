@@ -6,6 +6,7 @@ import { Divider } from "@/components/divider";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { ProductInCart } from "@/types/products";
 import { formatPrice } from "@/utils/format-price";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -58,6 +59,7 @@ const CartResultContainer = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     min-width: 352px;
+    min-height: 700px;
     padding: 16px 24px;
 
     background: var(--white);
@@ -94,10 +96,37 @@ const ShopButton = styled.button`
     width: 100%;
     margin-top: 40px;
     cursor: pointer;
+    font-weight: 600;
+
+    &:hover{
+        background: #3c893d;
+    }
+`
+
+const LinksContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 12px;
+    margin-top: calc(100% - 5px);
+    
+    a{
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 21px;
+        color: var(--text-dark);
+        text-transform: uppercase;
+    }
 `
 
 export default function CartPage(){
     const {value, updateLocalStorage} = useLocalStorage<ProductInCart[]>("cart-items", [])
+    const router = useRouter()
+
+    const handleNavigateToFinish = () => {
+        router.push("/finish")
+        updateLocalStorage([]);
+    }
 
     const calculeteTotal = (value: ProductInCart[]) => {
         return value.reduce((sum, item) => sum += (item.price_in_cents * item.quantity), 0)
@@ -157,7 +186,15 @@ export default function CartPage(){
                         <p>Total</p>
                         <p>{cartTotalWithDelivery}</p>
                     </TotalItem>
-                    <ShopButton>Finalizar Compra</ShopButton>
+                    <ShopButton onClick={handleNavigateToFinish}>
+                        Finalizar Compra
+                    </ShopButton>
+                    <LinksContainer>
+                        <a href="#">Ajuda</a>
+                        <a href="#">Reembolsos</a>
+                        <a href="#">Entregas e Frete</a>
+                        <a href="#">Trocas e Devoluções</a>
+                    </LinksContainer>
                 </CartResultContainer>
             </Container>
         </DefaultPageLayout>

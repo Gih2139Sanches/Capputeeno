@@ -55,6 +55,7 @@ const Item = styled.li`
             font-weight: 400;
             font-size: 12px;
             max-height: 50%;
+            max-width: 520px;
             overflow: hidden;
             text-overflow: ellipsis;
         }
