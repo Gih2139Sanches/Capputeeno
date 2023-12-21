@@ -19,6 +19,15 @@ export const PrimaryInput = styled.input`
         font-size: 14px;
         line-height: 22px;
     }
+
+    @media (min-width: ${props => props.theme.desktopLargeBreakpoint}){
+        font-size: 14px;
+        line-height: 22px;
+        width: 352px;
+        height: 42px;
+        margin-left: -100px;
+        padding: 10px 22px;
+    }
 `
 
 const InputContainer = styled.div`

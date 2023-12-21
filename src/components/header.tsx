@@ -26,6 +26,10 @@ const TagHeader = styled.header`
     @media (min-width: ${props => props.theme.destopBreakpoint}){
         padding: 20px 160px;
     }
+
+    @media (min-width: ${props => props.theme.desktopLargeBreakpoint}){
+        padding: 20px 160px;
+    }
 `
 
 const Logo = styled.a`
@@ -40,6 +44,10 @@ const Logo = styled.a`
     }
 
     @media (min-width: ${props => props.theme.destopBreakpoint}){
+        font-size: 40px;
+    }
+
+    @media (min-width: ${props => props.theme.desktopLargeBreakpoint}){
         font-size: 40px;
     }
 `
