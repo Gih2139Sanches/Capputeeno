@@ -26,16 +26,16 @@ export function FilterContextProvider({children}: ProviderProps){
 
     return (
         <FilterContext.Provider 
-        value={{
-            search, 
-            page, 
-            type, 
-            priority,
-            setSearch, 
-            setPage, 
-            setType,
-            setPriority
-        }}>
+            value={{
+                search, 
+                page, 
+                type, 
+                priority,
+                setSearch, 
+                setPage, 
+                setType,
+                setPriority
+            }}>
             {children}
         </FilterContext.Provider>
     )
