@@ -31,6 +31,11 @@ const FilterItem = styled.li<FilterItemProps>`
         font-size: 16px;
         line-height: 22px;
     }
+
+    @media (min-width: ${props => props.theme.desktopLargeBreakpoint}){
+        font-size: 16px;
+        line-height: 22px;
+    }
 `
 
 export function FilterByType(){

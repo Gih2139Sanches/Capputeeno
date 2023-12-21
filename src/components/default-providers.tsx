@@ -9,6 +9,7 @@ interface DeafultProvidersProps{
 }
 
 const theme = {
+    desktopLargeBreakpoint: "1440px",
     desktopBreakpoint: "968px",
     tabletBreakpoint: "768px",
 }
