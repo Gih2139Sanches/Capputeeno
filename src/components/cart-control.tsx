@@ -7,7 +7,7 @@ const CartCount = styled.span`
     width: 17px;
     height: 17px;
     border-radius: 100%;
-    padding: 0px 5px;
+    padding: 2px 5px;
     margin-left: -10px;
     font-size: 10px;
   
