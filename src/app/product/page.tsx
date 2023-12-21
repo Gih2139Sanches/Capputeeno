@@ -1,8 +1,9 @@
 "use client"
 import { BackButton } from "@/components/back-button"
 import { DefaultPageLayout } from "@/components/default-page-layout"
-import { CartIcon } from "@/components/icons/cart-icon"
+import { ShopBagIcon } from "@/components/icons/shopping-bag-icon"
 import { useProduct } from "@/hooks/useProduct"
+import { Product } from "@/types/products";
 import { formatPrice } from "@/utils/format-price"
 import styled from "styled-components"
 
@@ -48,8 +49,6 @@ const Container = styled.div`
                 gap: 8px;
             }
         }
-
-       
     }
 `
 
@@ -98,9 +97,7 @@ const ProductInfo = styled.div`
         }
 
         p{
-            font-weight: 400;
             font-size: 14px;
-            color: var(--text-dark);
         }
     }
 `
@@ -113,19 +110,18 @@ export default function Product({searchParams}: {searchParams: {id: string}}){
         if(cartItems){
             let cartItemsArray = JSON.parse(cartItems);
 
-            let existingProductIndex = cartItemsArray.findIndex((item: {id: string}) => item.id === searchParams.id)
+            let existingProductIndex = cartItemsArray.findIndex((item: {id: string}) => item.id === searchParams.id);
 
             if(existingProductIndex != -1){
                 cartItemsArray[existingProductIndex].quantity += 1;
-            }else{
-                cartItemsArray.push({...data, id: searchParams.id, quantity: 1})
+            } else{
+                cartItemsArray.push({...data, quantity: 1, id: searchParams.id})
             }
-            localStorage.setItem('cart-items', JSON.stringify(cartItems))
+            localStorage.setItem('cart-items', JSON.stringify(cartItemsArray))
         }else{
-            const newCart = [{...data, id: searchParams.id, quantity: 1}]
+            const newCart = [{...data, quantity: 1, id: searchParams.id}]
             localStorage.setItem('cart-items', JSON.stringify(newCart))
         }
-        
     }
 
     return(
@@ -146,7 +142,7 @@ export default function Product({searchParams}: {searchParams: {id: string}}){
                             </div>
                         </ProductInfo>
                         <button onClick={handleAddToCart}>
-                            <CartIcon/>
+                            <ShopBagIcon/>
                             Adicionar ao carrinho
                         </button>
                     </div>
