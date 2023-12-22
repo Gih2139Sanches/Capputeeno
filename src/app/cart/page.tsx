@@ -121,7 +121,7 @@ const LinksContainer = styled.div`
 
 export default function CartPage(){
     const {value, updateLocalStorage} = useLocalStorage<ProductInCart[]>("cart-items", [])
-    const router = useRouter()
+    const router = useRouter();
 
     const handleNavigateToFinish = () => {
         router.push("/finish")
